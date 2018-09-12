@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+      Docker 가이드 2편
+      
+    </title>
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/res/favicon.ico">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    
+    
+    <link rel="stylesheet" href="/assets/css/post.css">
+    
+    
+    
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="Docker 가이드 2편" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Docker 가이드 2편(osx)" />
+<meta property="og:description" content="Docker 가이드 2편(osx)" />
+<link rel="canonical" href="http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C2" />
+<meta property="og:url" content="http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C2" />
+<meta property="og:site_name" content="suseong Kim 빅데이터 개발자 블로그" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-07-06T19:30:00+09:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C2","description":"Docker 가이드 2편(osx)","headline":"Docker 가이드 2편","datePublished":"2018-07-06T19:30:00+09:00","dateModified":"2018-07-06T19:30:00+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C2"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    <header>
+      <nav class="top-nav teal">
+        <div class="nav-wrapper">
+          <div class="container">
+            <a class="page-title" href="/">suseong Kim 빅데이터 개발자 블로그</a>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+          <i class="material-icons">menu</i>
+        </a>
+      </div>
+      <ul id="slide-out" class="side-nav fixed">
+        <li>
+          <div class="userView">
+            <div class="background"></div>
+            <a href="https://github.com/suseongKim87" target="_blank"><img class="circle z-depth-2" src="/assets/res/user.png"></a>
+            <span class="white-text name">suseong Kim</span>
+            <span class="white-text email">suseongKim87@gmail.com</span>
+          </div>
+        </li>
+        <li><a class="waves-effect" href="/"><i class="material-icons">home</i>Home</a></li>
+        <li><a class="waves-effect" href="/projects"><i class="material-icons">description</i>Projects</a></li>
+        <li><a class="waves-effect" href="/categories"><i class="material-icons">sort</i>Categories</a></li>
+        <li><a class="waves-effect" href="/tags"><i class="material-icons">label</i>Tags</a></li>
+        <li><a class="waves-effect" href="/feed.xml" target="_blank"><i class="material-icons">rss_feed</i>RSS</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="waves-effect" href="/about"><i class="material-icons">person</i>About</a></li>
+        <li><a class="waves-effect" href="/contact"><i class="material-icons">email</i>Contact</a></li>
+      </ul>
+    </header>
+    <main>
+
+<div class="container">
+  <div id="post-info">
+  <h3>Docker 가이드 2편</h3>
+  <ul class="collapsible hoverable" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header">
+        <span>
+          <i class="material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Date">date_range</i>
+          06/07/2018 19:30
+          <i id="indicate" class="right material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Show extra info">info</i>
+        </span>
+      </div>
+      <div class="collapsible-body">
+        <span>
+          <i class="material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Categories">sort</i>
+          
+          
+          
+          <a href="/categories#docker가이드_cap" target="_blank"><div class="chip">Docker가이드</div></a>
+          
+        </span>
+        <span>
+          <i class="material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Tags">label</i>
+          
+          
+          
+          <a href="/tags#docker_cap" target="_blank"><div class="chip">Docker</div></a>
+          
+        </span>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="divider"></div>
+<div class="row">
+  <div class="col s12">
+    <h4 id="docker-가이드-2편osx">Docker 가이드 2편(osx)</h4>
+<p><br /><br /></p>
+
+<h5 id="1컨테이너-실행하기">1.컨테이너 실행하기</h5>
+<p>도커 컨테이너를 실행하는 방법 2가지의 명령어가 있는데, “pull =&gt; create =&gt; start”, “run” 이라는 명령어가 있습니다.<br />
+두가지 방법 모두 컨테이너를 실행 할 수 있는데, 다른 것은 “run”은 세 명령어를 통합하여 사용한다고 생각하시면 됩니다.<br />
+“pull”은, docker의 이미지를 다운로드 받기 위해서 사용하는 명령어이며, “create”를 통해 컨테이너를 생성하고, “start”하여 시작하게 됩니다.<br />
+(이미지가 존재하지 않으면 사용 할 수 없습니다!)
+하지만 거의 “run” 명령어를 사용하기 때문에, 이 블로그에서는 다루지 않겠습니다. “run” 명령어는 아래와 같습니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker run -it ubuntu:latest /bin/bash  
+$ root@a0058ba9ce6b:/#
+</code></pre></div></div>
+
+<p>위 명령어를 사용하면 ubuntu 컨테이너를 생성하여, bash 쉘로 접근하게 됩니다. (이미지가 없으신 경우에는 다운로드 후, 실행 됩니다.)<br />
+위 명령어를 자세히 보면, “-it” 라는 명령어가 있는데, 이것은 “-i”와 “-t” 옵션을 합쳐서 사용한 것이며, 이것은 bash로 접근한 후, 키보드를 입력 옵션을 준 것입니다.<br />
+자세한 내용은 “docker run –help”를 사용하시면, 확인이 가능합니다.  \
+<br /><br /></p>
+
+<h5 id="2-docker-image-확인">2. Docker image 확인</h5>
+<p>도커의 컨테이너를 사용하기 위해서는 프로그램과 여러 라이브러리, OS 등을 디렉토리 형태로 가지고 있는 image 파일이 필요합니다.
+보통은 “run” 함수를 사용하여 이미지를 다운받아 사용하지만, 만약 이미지를 자신이 만들고 확인하는 과정이 필요한 경우가 생긴다면 아래와 같은 명령어를 사용하면 됩니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker images
+REPOSITORY                       TAG                       IMAGE ID            CREATED             SIZE
+centos                           mongo1                    65c22a7710eb        24 hours ago        559MB
+centos                           test2                     da1355d942e1        25 hours ago        473MB
+centos                           test1                     55365132aa89        26 hours ago        200MB
+</code></pre></div></div>
+
+<p>위 예시와 같이 자신이 가지고 있는 이미지를 확인 할 수 있습니다.<br />
+또한 이미지가 많이 쌓였을 경우, 데이터 부족의 문제가 발생할 수 있습니다.(사실 그렇게 가능성이 높지는 않지만… 필요없는 것들을 지우는 것은 당연한 일이기 때문에…)
+이런한 문제를 제거하기 위해서는 “rmi” 라는 명령어를 사용해야 합니다.</p>
+
+<p>$docker rmi [OPTIONS] IMAGE ID [IMAGE…]</p>
+
+<p><br /><br /></p>
+
+<h5 id="3-이미지image">3. 이미지(Image)</h5>
+<p><br /><br /></p>
+
+<h5 id="4-참고문헌-및-블로그">4. 참고문헌 및 블로그</h5>
+<p>Asa Shiho, <strong>[ 완벽한 IT 인프라 구축을 위한 Docker ]</strong>, 정보문화사<br />
+<a href="https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html">https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html</a> - 초보를 위한 도커 안내서 - 도커란 무엇인가?</p>
+
+  </div>
+</div>
+
+</div>
+
+    </main>
+    <footer class="page-footer teal">
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <img src="/assets/res/logo.png" alt="logo"/>
+            <p class="grey-text text-lighten-4">김수성 블로그 입니다.
+</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          &#xA9; 2018 suseong Kim 빅데이터 개발자 블로그. All rights reserved. Powered by <a href="https://github.com/ShawnTeoh/matjek">MatJek</a>.
+        </div>
+      </div>
+    </footer>
+    <script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    
+    
+    <script src="/assets/js/post.js"></script>
+    
+    
+    
+    
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>

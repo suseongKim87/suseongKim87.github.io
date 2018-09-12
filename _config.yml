@@ -13,15 +13,17 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: suseong Kim 블로그
+title: suseong Kim 개발자 블로그
 description: > # this means to ignore newlines until "baseurl:"
   김수성 블로그 입니다.
 
-baseurl: "/"
-url: "https://suseongKim87.github.io"
+baseurl: ""
+url: "https://localhost:4000"
+# url: "https://suseongKim87.github.io"
+
 permalink: /:year/:month/:day/:title
 repository: suseongKim87.github.io
-paginate: 5
+paginate: 10
 
 # MatJek specific configurations
 github_profile: "https://github.com/suseongKim87"

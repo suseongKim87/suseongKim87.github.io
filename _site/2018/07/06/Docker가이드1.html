@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+      Docker 가이드 1편
+      
+    </title>
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/res/favicon.ico">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    
+    
+    <link rel="stylesheet" href="/assets/css/post.css">
+    
+    
+    
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+    <!-- Begin Jekyll SEO tag v2.5.0 -->
+<meta name="generator" content="Jekyll v3.7.3" />
+<meta property="og:title" content="Docker 가이드 1편" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Docker 가이드 1편(osx)" />
+<meta property="og:description" content="Docker 가이드 1편(osx)" />
+<link rel="canonical" href="http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C1" />
+<meta property="og:url" content="http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C1" />
+<meta property="og:site_name" content="suseong Kim 빅데이터 개발자 블로그" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-07-06T19:30:00+09:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C1","description":"Docker 가이드 1편(osx)","headline":"Docker 가이드 1편","datePublished":"2018-07-06T19:30:00+09:00","dateModified":"2018-07-06T19:30:00+09:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C1"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    <header>
+      <nav class="top-nav teal">
+        <div class="nav-wrapper">
+          <div class="container">
+            <a class="page-title" href="/">suseong Kim 빅데이터 개발자 블로그</a>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only">
+          <i class="material-icons">menu</i>
+        </a>
+      </div>
+      <ul id="slide-out" class="side-nav fixed">
+        <li>
+          <div class="userView">
+            <div class="background"></div>
+            <a href="https://github.com/suseongKim87" target="_blank"><img class="circle z-depth-2" src="/assets/res/user.png"></a>
+            <span class="white-text name">suseong Kim</span>
+            <span class="white-text email">suseongKim87@gmail.com</span>
+          </div>
+        </li>
+        <li><a class="waves-effect" href="/"><i class="material-icons">home</i>Home</a></li>
+        <li><a class="waves-effect" href="/projects"><i class="material-icons">description</i>Projects</a></li>
+        <li><a class="waves-effect" href="/categories"><i class="material-icons">sort</i>Categories</a></li>
+        <li><a class="waves-effect" href="/tags"><i class="material-icons">label</i>Tags</a></li>
+        <li><a class="waves-effect" href="/feed.xml" target="_blank"><i class="material-icons">rss_feed</i>RSS</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="waves-effect" href="/about"><i class="material-icons">person</i>About</a></li>
+        <li><a class="waves-effect" href="/contact"><i class="material-icons">email</i>Contact</a></li>
+      </ul>
+    </header>
+    <main>
+
+<div class="container">
+  <div id="post-info">
+  <h3>Docker 가이드 1편</h3>
+  <ul class="collapsible hoverable" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header">
+        <span>
+          <i class="material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Date">date_range</i>
+          06/07/2018 19:30
+          <i id="indicate" class="right material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Show extra info">info</i>
+        </span>
+      </div>
+      <div class="collapsible-body">
+        <span>
+          <i class="material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Categories">sort</i>
+          
+          
+          
+          <a href="/categories#docker가이드_cap" target="_blank"><div class="chip">Docker가이드</div></a>
+          
+        </span>
+        <span>
+          <i class="material-icons tooltipped" data-position="left" data-delay="30" data-tooltip="Tags">label</i>
+          
+          
+          
+          <a href="/tags#docker_cap" target="_blank"><div class="chip">Docker</div></a>
+          
+        </span>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="divider"></div>
+<div class="row">
+  <div class="col s12">
+    <h4 id="docker-가이드-1편osx">Docker 가이드 1편(osx)</h4>
+<p><br /><br /></p>
+
+<h5 id="1docker란컨테이너">1.Docker란(컨테이너)?</h5>
+<p>Docker는 컨테이너 가상화 기술을 사용하여 애플리케이션 실행 환경을 구축 및 운영하기 위한 플랫폼 입니다.<br />
+컨테이너 가상화는 기존의 또 다른 게스트OS를 구성하는 방식과는 다르게 호스트OS상에서 논리적으로 컨테이너를 나눠<br />
+다양한 라이브러리와 애플리케이션 등을 컨테이너 안에 넣고 개별 서버처럼 사용하는것이 컨테이너 가상화 입니다.<br />
+아래 그림을 보면 조금 더 쉽게 이해 할 수 있습니다.</p>
+
+<p><img src="/assets/img/vm_version.png" alt="기존방식" width="40%" /> <br /> <em><strong>[기존방식] 하드웨어를 가상화하여 만드는 방식</strong></em></p>
+
+<p><img src="/assets/img/container_version.png" alt="컨테이너방식" width="40%" /> <br /> <em><strong>[컨테이너방식] 격리된 환경을 프로세스를 사용하는 방식</strong></em></p>
+
+<p>위의 방식을 볼 때, <strong>[기존방식]</strong> 은 호스트OS에 hypervisor가 hardware를 가상화 하여 그 위에 게스트OS가 올라가게 됩니다.<br />
+하지만 <strong>[컨테이너방식]</strong> 은 존의 호스트OS 위에 도커엔진을 올리며, application에 실행에 필요한 바이너리만을 사용합니다.<br />
+또한 추가적인 OS를 필요로 하지 않고, 호스트OS 커널기능을 기반으로 프로세스를 동작하여 리소스를 최소화하게 됩니다.
+<br /><br /></p>
+
+<h5 id="2-docker-다운로드">2. Docker 다운로드</h5>
+<p>설치 방법 : <a href="https://docs.docker.com/docker-for-mac/install/#install-and-run-docker-for-mac">https://docs.docker.com/docker-for-mac/install/#install-and-run-docker-for-mac</a></p>
+
+<p>osx에 docker를 설치하는 방법은 아주 쉽습니다. 위 주소를 이용하면 쉽게 다운로드가 가능하며, 설치가이드 또한 간단합니다.<br />
+여기서 알아두어야 할 사항은 <span style="color:red;"><em><strong>도커는 리눅스 기반의 커널을 사용하는 컨테이너</strong></em></span> 이기 때문에 window나 osx를 기반으로 사용하는 경우,<br />
+“docker for mac”, “docker for window” 를 설치하여 사용하게 되는데, 가상머신 위에 도커를 사용하는 방식으로 사용합니다.<br />
+서버 개발자분은 도커를 리눅스에 직접 올려서 해보시는 것이 더 도움이 될 듯 싶습니다.<br />
+<br /><br /></p>
+
+<h5 id="3-이미지image">3. 이미지(Image)</h5>
+<p>도커는 애플리케이션 실행에 필요한 프로그램, 라이브러리, OS 등을 하나로 모아 도커 이미지를 생성하며, 이러한 이미지는 컨테이너를 실행하는데 기반이 됩니다.<br />
+이러한 이미지는 도커에 search 명령을 이용하여 다른 사용자가 만들어 놓은 이미지를 사용할 수 있으며, 자신이 필요한 프로그램을 집합으로 만들어 사용도 가능합니다.<br />
+아래는 search 를 이용해 검색된 이미지 리스트 입니다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ docker search ubuntu
+</code></pre></div></div>
+
+<p><img src="/assets/img/docker_search.png" alt="search image" width="100%" /> <br /> <em><strong>[docker_search] 검색된 이미지 리스트</strong></em></p>
+
+<p>centOS, ubuntu 등 Linux 배포판의 기본 기능을 제공하는 베이스 이미지가 배포되어 있으며, 공식 이미지 이외에도 여러 이미지를 확인 할 수 있습니다.<br />
+자신에게 딱 맞는 이미지를 찾기는 어렵겠지만, 간단하게 리눅스, java, web server 가 구현된 이미지를 많이 있으니 참고해서 만드시면 빠르게 사용하실 수 있습니다.<br />
+<br /><br /></p>
+
+<h5 id="4-참고문헌-및-블로그">4. 참고문헌 및 블로그</h5>
+<p>Asa Shiho, <strong>[ 완벽한 IT 인프라 구축을 위한 Docker ]</strong>, 정보문화사<br />
+<a href="https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html">https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html</a> - 초보를 위한 도커 안내서 - 도커란 무엇인가?
+<a href="https://tacademy.sktechx.com/live/player/onlineLectureDetail.action?seq=125">https://tacademy.sktechx.com/live/player/onlineLectureDetail.action?seq=125</a> - [토크ON세미나] 컨테이너 기반 가상화 플랫폼 ‘도커(Doker)’의 이해(tAcademy 동영상 강의)</p>
+
+  </div>
+</div>
+
+</div>
+
+    </main>
+    <footer class="page-footer teal">
+      <div class="container">
+        <div class="row">
+          <div class="col s12">
+            <img src="/assets/res/logo.png" alt="logo"/>
+            <p class="grey-text text-lighten-4">김수성 블로그 입니다.
+</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          &#xA9; 2018 suseong Kim 빅데이터 개발자 블로그. All rights reserved. Powered by <a href="https://github.com/ShawnTeoh/matjek">MatJek</a>.
+        </div>
+      </div>
+    </footer>
+    <script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    
+    
+    <script src="/assets/js/post.js"></script>
+    
+    
+    
+    
+    <script src="/assets/js/main.js"></script>
+  </body>
+</html>

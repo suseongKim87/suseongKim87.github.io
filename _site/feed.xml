@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.7.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-07-19T20:54:44+09:00</updated><id>http://localhost:4000/</id><title type="html">suseong Kim 빅데이터 개발자 블로그</title><subtitle>김수성 블로그 입니다.
+</subtitle><entry><title type="html">Docker 가이드 2편</title><link href="http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C2" rel="alternate" type="text/html" title="Docker 가이드 2편" /><published>2018-07-06T19:30:00+09:00</published><updated>2018-07-06T19:30:00+09:00</updated><id>http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C2</id><content type="html" xml:base="http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C2">&lt;h4 id=&quot;docker-가이드-2편osx&quot;&gt;Docker 가이드 2편(osx)&lt;/h4&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;1컨테이너-실행하기&quot;&gt;1.컨테이너 실행하기&lt;/h5&gt;
+&lt;p&gt;도커 컨테이너를 실행하는 방법 2가지의 명령어가 있는데, “pull =&amp;gt; create =&amp;gt; start”, “run” 이라는 명령어가 있습니다.&lt;br /&gt;
+두가지 방법 모두 컨테이너를 실행 할 수 있는데, 다른 것은 “run”은 세 명령어를 통합하여 사용한다고 생각하시면 됩니다.&lt;br /&gt;
+“pull”은, docker의 이미지를 다운로드 받기 위해서 사용하는 명령어이며, “create”를 통해 컨테이너를 생성하고, “start”하여 시작하게 됩니다.&lt;br /&gt;
+(이미지가 존재하지 않으면 사용 할 수 없습니다!)
+하지만 거의 “run” 명령어를 사용하기 때문에, 이 블로그에서는 다루지 않겠습니다. “run” 명령어는 아래와 같습니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run -it ubuntu:latest /bin/bash  
+$ root@a0058ba9ce6b:/#
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 명령어를 사용하면 ubuntu 컨테이너를 생성하여, bash 쉘로 접근하게 됩니다. (이미지가 없으신 경우에는 다운로드 후, 실행 됩니다.)&lt;br /&gt;
+위 명령어를 자세히 보면, “-it” 라는 명령어가 있는데, 이것은 “-i”와 “-t” 옵션을 합쳐서 사용한 것이며, 이것은 bash로 접근한 후, 키보드를 입력 옵션을 준 것입니다.&lt;br /&gt;
+자세한 내용은 “docker run –help”를 사용하시면, 확인이 가능합니다.  \
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;2-docker-image-확인&quot;&gt;2. Docker image 확인&lt;/h5&gt;
+&lt;p&gt;도커의 컨테이너를 사용하기 위해서는 프로그램과 여러 라이브러리, OS 등을 디렉토리 형태로 가지고 있는 image 파일이 필요합니다.
+보통은 “run” 함수를 사용하여 이미지를 다운받아 사용하지만, 만약 이미지를 자신이 만들고 확인하는 과정이 필요한 경우가 생긴다면 아래와 같은 명령어를 사용하면 됩니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker images
+REPOSITORY                       TAG                       IMAGE ID            CREATED             SIZE
+centos                           mongo1                    65c22a7710eb        24 hours ago        559MB
+centos                           test2                     da1355d942e1        25 hours ago        473MB
+centos                           test1                     55365132aa89        26 hours ago        200MB
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 예시와 같이 자신이 가지고 있는 이미지를 확인 할 수 있습니다.&lt;br /&gt;
+또한 이미지가 많이 쌓였을 경우, 데이터 부족의 문제가 발생할 수 있습니다.(사실 그렇게 가능성이 높지는 않지만… 필요없는 것들을 지우는 것은 당연한 일이기 때문에…)
+이런한 문제를 제거하기 위해서는 “rmi” 라는 명령어를 사용해야 합니다.&lt;/p&gt;
+
+&lt;p&gt;$docker rmi [OPTIONS] IMAGE ID [IMAGE…]&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;3-이미지image&quot;&gt;3. 이미지(Image)&lt;/h5&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;4-참고문헌-및-블로그&quot;&gt;4. 참고문헌 및 블로그&lt;/h5&gt;
+&lt;p&gt;Asa Shiho, &lt;strong&gt;[ 완벽한 IT 인프라 구축을 위한 Docker ]&lt;/strong&gt;, 정보문화사&lt;br /&gt;
+&lt;a href=&quot;https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html&quot;&gt;https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html&lt;/a&gt; - 초보를 위한 도커 안내서 - 도커란 무엇인가?&lt;/p&gt;</content><author><name></name></author><category term="Docker" /><summary type="html">Docker 가이드 2편(osx)</summary></entry><entry><title type="html">Docker 가이드 1편</title><link href="http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C1" rel="alternate" type="text/html" title="Docker 가이드 1편" /><published>2018-07-06T19:30:00+09:00</published><updated>2018-07-06T19:30:00+09:00</updated><id>http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C1</id><content type="html" xml:base="http://localhost:4000/2018/07/06/Docker%EA%B0%80%EC%9D%B4%EB%93%9C1">&lt;h4 id=&quot;docker-가이드-1편osx&quot;&gt;Docker 가이드 1편(osx)&lt;/h4&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;1docker란컨테이너&quot;&gt;1.Docker란(컨테이너)?&lt;/h5&gt;
+&lt;p&gt;Docker는 컨테이너 가상화 기술을 사용하여 애플리케이션 실행 환경을 구축 및 운영하기 위한 플랫폼 입니다.&lt;br /&gt;
+컨테이너 가상화는 기존의 또 다른 게스트OS를 구성하는 방식과는 다르게 호스트OS상에서 논리적으로 컨테이너를 나눠&lt;br /&gt;
+다양한 라이브러리와 애플리케이션 등을 컨테이너 안에 넣고 개별 서버처럼 사용하는것이 컨테이너 가상화 입니다.&lt;br /&gt;
+아래 그림을 보면 조금 더 쉽게 이해 할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/vm_version.png&quot; alt=&quot;기존방식&quot; width=&quot;40%&quot; /&gt; &lt;br /&gt; &lt;em&gt;&lt;strong&gt;[기존방식] 하드웨어를 가상화하여 만드는 방식&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/container_version.png&quot; alt=&quot;컨테이너방식&quot; width=&quot;40%&quot; /&gt; &lt;br /&gt; &lt;em&gt;&lt;strong&gt;[컨테이너방식] 격리된 환경을 프로세스를 사용하는 방식&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;위의 방식을 볼 때, &lt;strong&gt;[기존방식]&lt;/strong&gt; 은 호스트OS에 hypervisor가 hardware를 가상화 하여 그 위에 게스트OS가 올라가게 됩니다.&lt;br /&gt;
+하지만 &lt;strong&gt;[컨테이너방식]&lt;/strong&gt; 은 존의 호스트OS 위에 도커엔진을 올리며, application에 실행에 필요한 바이너리만을 사용합니다.&lt;br /&gt;
+또한 추가적인 OS를 필요로 하지 않고, 호스트OS 커널기능을 기반으로 프로세스를 동작하여 리소스를 최소화하게 됩니다.
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;2-docker-다운로드&quot;&gt;2. Docker 다운로드&lt;/h5&gt;
+&lt;p&gt;설치 방법 : &lt;a href=&quot;https://docs.docker.com/docker-for-mac/install/#install-and-run-docker-for-mac&quot;&gt;https://docs.docker.com/docker-for-mac/install/#install-and-run-docker-for-mac&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;osx에 docker를 설치하는 방법은 아주 쉽습니다. 위 주소를 이용하면 쉽게 다운로드가 가능하며, 설치가이드 또한 간단합니다.&lt;br /&gt;
+여기서 알아두어야 할 사항은 &lt;span style=&quot;color:red;&quot;&gt;&lt;em&gt;&lt;strong&gt;도커는 리눅스 기반의 커널을 사용하는 컨테이너&lt;/strong&gt;&lt;/em&gt;&lt;/span&gt; 이기 때문에 window나 osx를 기반으로 사용하는 경우,&lt;br /&gt;
+“docker for mac”, “docker for window” 를 설치하여 사용하게 되는데, 가상머신 위에 도커를 사용하는 방식으로 사용합니다.&lt;br /&gt;
+서버 개발자분은 도커를 리눅스에 직접 올려서 해보시는 것이 더 도움이 될 듯 싶습니다.&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;3-이미지image&quot;&gt;3. 이미지(Image)&lt;/h5&gt;
+&lt;p&gt;도커는 애플리케이션 실행에 필요한 프로그램, 라이브러리, OS 등을 하나로 모아 도커 이미지를 생성하며, 이러한 이미지는 컨테이너를 실행하는데 기반이 됩니다.&lt;br /&gt;
+이러한 이미지는 도커에 search 명령을 이용하여 다른 사용자가 만들어 놓은 이미지를 사용할 수 있으며, 자신이 필요한 프로그램을 집합으로 만들어 사용도 가능합니다.&lt;br /&gt;
+아래는 search 를 이용해 검색된 이미지 리스트 입니다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker search ubuntu
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/docker_search.png&quot; alt=&quot;search image&quot; width=&quot;100%&quot; /&gt; &lt;br /&gt; &lt;em&gt;&lt;strong&gt;[docker_search] 검색된 이미지 리스트&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;centOS, ubuntu 등 Linux 배포판의 기본 기능을 제공하는 베이스 이미지가 배포되어 있으며, 공식 이미지 이외에도 여러 이미지를 확인 할 수 있습니다.&lt;br /&gt;
+자신에게 딱 맞는 이미지를 찾기는 어렵겠지만, 간단하게 리눅스, java, web server 가 구현된 이미지를 많이 있으니 참고해서 만드시면 빠르게 사용하실 수 있습니다.&lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;4-참고문헌-및-블로그&quot;&gt;4. 참고문헌 및 블로그&lt;/h5&gt;
+&lt;p&gt;Asa Shiho, &lt;strong&gt;[ 완벽한 IT 인프라 구축을 위한 Docker ]&lt;/strong&gt;, 정보문화사&lt;br /&gt;
+&lt;a href=&quot;https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html&quot;&gt;https://subicura.com/2017/01/19/docker-guide-for-beginners-1.html&lt;/a&gt; - 초보를 위한 도커 안내서 - 도커란 무엇인가?
+&lt;a href=&quot;https://tacademy.sktechx.com/live/player/onlineLectureDetail.action?seq=125&quot;&gt;https://tacademy.sktechx.com/live/player/onlineLectureDetail.action?seq=125&lt;/a&gt; - [토크ON세미나] 컨테이너 기반 가상화 플랫폼 ‘도커(Doker)’의 이해(tAcademy 동영상 강의)&lt;/p&gt;</content><author><name></name></author><category term="Docker" /><summary type="html">Docker 가이드 1편(osx)</summary></entry><entry><title type="html">Java 알고리즘 문제 풀기</title><link href="http://localhost:4000/2018/07/06/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%84%B0%EB%94%94" rel="alternate" type="text/html" title="Java 알고리즘 문제 풀기" /><published>2018-07-06T19:27:00+09:00</published><updated>2018-07-06T19:27:00+09:00</updated><id>http://localhost:4000/2018/07/06/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%84%B0%EB%94%94</id><content type="html" xml:base="http://localhost:4000/2018/07/06/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%84%B0%EB%94%94">&lt;h5 id=&quot;자바-스터디&quot;&gt;자바 스터디&lt;/h5&gt;</content><author><name></name></author><category term="Java" /><summary type="html">자바 스터디</summary></entry><entry><title type="html">파이썬 공부한 내용 정리</title><link href="http://localhost:4000/2018/07/06/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%8A%A4%ED%84%B0%EB%94%94" rel="alternate" type="text/html" title="파이썬 공부한 내용 정리 " /><published>2018-07-06T03:30:13+09:00</published><updated>2018-07-06T03:30:13+09:00</updated><id>http://localhost:4000/2018/07/06/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%8A%A4%ED%84%B0%EB%94%94</id><content type="html" xml:base="http://localhost:4000/2018/07/06/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%8A%A4%ED%84%B0%EB%94%94">&lt;h5 id=&quot;python-설치-및-설정osx&quot;&gt;Python 설치 및 설정(osx)&lt;/h5&gt;
+
+&lt;p&gt;파이썬 공부함…&lt;/p&gt;</content><author><name></name></author><category term="python기초" /><summary type="html">Python 설치 및 설정(osx)</summary></entry></feed>
